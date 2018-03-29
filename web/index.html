@@ -1,0 +1,37 @@
+{% extends "lib/webinterface/fragments/layout.tpl" %}
+{% import "lib/webinterface/fragments/macros.tpl" as macros%}
+{% block head_css %}{% include 'lib/webinterface/fragments/datatables_css.tpl' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">Jinvoo</h1>
+		Many WiFi devices that use the Jinvoo Android / IOS application be controlled through this module.
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">
+				<h4>
+				<div style="float: right;">
+					<a href="#" data-toggle="modal" data-target="#zwaveinfo"><i class="fa fa-question-circle fa-2x"></i></a>
+				</div>Jinvoo Tools </h4>
+			</div>
+			<div class="panel-body">
+				Tools to be completed later.
+			</div>
+		</div>
+	</div>
+	<!-- /.col-lg-6 -->
+</div>
+<!-- /.row -->
+
+{% endblock %}
+
+{% block body_bottom_js %}{% include 'lib/webinterface/fragments/datatables_js.tpl' %}{% endblock %}
+
+
