@@ -1,1 +1,1 @@
-pytuta=6.0
+pytuya==6.0

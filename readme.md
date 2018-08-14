@@ -5,7 +5,7 @@ Provides support for WiFi switches that were setup and controlled through the
 Jinvoo Android/IOS app.
 
 * https://yombo.net/modules/jinvoo
-* https://yombo.net/Docs/KB:Jinvoo_guide
+* https://yombo.net/KB:Jinvoo_guide
 
 Learn about [Yombo Gateway](https://yombo.net/) or
 [Get started today](https://yg2.in/start)
