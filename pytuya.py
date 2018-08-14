@@ -1,8 +1,3 @@
-# From: https://raw.githubusercontent.com/clach04/python-tuya/01c123f899e0ded10554fb0a6fc5e64d20176d30/pytuya/__init__.py
-# License: MIT
-#
-# File has been modified to add shutdown before close.
-#
 # Python module to interface with Shenzhen Xenon ESP8266MOD WiFi smart devices
 # E.g. https://wikidevi.com/wiki/Xenon_SM-PW701U
 #   SKYROKU SM-PW701U Wi-Fi Plug Smart Plug
@@ -177,7 +172,6 @@ class XenonDevice(object):
         s.connect((self.address, self.port))
         s.send(payload)
         data = s.recv(1024)
-        s.shutdown(socket.SHUT_RDWR)
         s.close()
         return data
 
@@ -274,7 +268,9 @@ class Device(XenonDevice):
         # print('result %r' % result)
         if result.startswith(b'{'):
             # this is the regular expected code path
-            result = json.loads(result.decode())
+            if not isinstance(result, str):
+                result = result.decode()
+            result = json.loads(result)
         elif result.startswith(PROTOCOL_VERSION_BYTES):
             # got an encrypted payload, happens occasionally
             # expect resulting json to look similar to:: {"devId":"ID","dps":{"1":true,"2":0},"t":EPOCH_SECS,"s":3_DIGIT_NUM}
@@ -285,9 +281,11 @@ class Device(XenonDevice):
             cipher = AESCipher(self.local_key)
             result = cipher.decrypt(result)
             log.debug('decrypted result=%r', result)
-            result = json.loads(result.decode())
+            if not isinstance(result, str):
+                result = result.decode()
+            result = json.loads(result)
         else:
-            log.debug('Unexpected status() payload=%r', result)
+            log.error('Unexpected status() payload=%r', result)
 
         return result
 
@@ -303,6 +301,7 @@ class Device(XenonDevice):
         if isinstance(switch, int):
             switch = str(switch)  # index and payload is a string
         payload = self.generate_payload(SET, {switch: on})
+        # print('payload %r' % payload)
 
         data = self._send_receive(payload)
         log.debug('set_status received data=%r', data)

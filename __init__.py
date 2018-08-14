@@ -1,1 +1,1 @@
-from .jinvoo import Jinvoo
+from .tuya import Tuya

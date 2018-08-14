@@ -13,7 +13,7 @@ class Jinvoo_Switch(Switch):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.FEATURES.update({
-            'number_of_steps': 1,
+            'number_of_steps': False,
             'sends_updates': True,
             }
         )

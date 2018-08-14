@@ -1,6 +1,7 @@
-#This file was created by Yombo for use with Yombo Gateway automation
-#software. Details can be found at https://yombo.net
 """
+This file was created by Yombo for use with Yombo Gateway automation
+software. Details can be found at https://yombo.net
+
 Tuya
 ==============
 
@@ -62,12 +63,10 @@ from yombo.utils import sleep
 
 from . import pytuya
 
-from yombo.modules.jinvoo.web_routes import module_tuya_routes
-
 logger = get_logger("modules.tuya")
 
 
-class Jinvoo(YomboModule):
+class Tuya(YomboModule):
     """
     Adds support for Tuya controlled devices.
     """
